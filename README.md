@@ -50,17 +50,4 @@ By default, the program can be accessed on ``http://localhost:8080`` or from ano
 <img src="screenshots/404.png" alt="Error 404 not found" style="width: 100%">
 
 
-
-
-
-│  └─ post.js
-├─ screenshots
-│  ├─ 404.png
-│  ├─ delete.png
-│  ├─ edit.png
-│  ├─ home.png
-│  ├─ sign-in.png
-│  └─ sign-up.png
-└─ server.js
-
 ```
