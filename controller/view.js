@@ -1,24 +1,24 @@
 const { Database } = require('sqlite3')
 const { open } = require('sqlite')
 
-// Sign In form for authenticating an existing account
+
 const signInPage = (req, res, next) => {
     res.render('sign-in.html')
 } 
 
-// Sign Up form for creating a new account
+
 const signUpPage = (req, res, next) => {
     res.render('sign-up.html')
 }
 
-// Homepage displayed to signed in users with their first and last name
+
 const homePage = async (req, res, next) => {
-    const session = req.cookies.session // Get session stored in cookie
+    const session = req.cookies.session 
 
     const { username } = await getUserDetails(session)
 
-    if (!username) { // Session does not exist in database
-        res.clearCookie('session') // Clear cookie because session is invalid
+    if (!username) { 
+        res.clearCookie('session') 
         res.redirect('/sign-in')
         return
     }
@@ -67,7 +67,7 @@ const homePage = async (req, res, next) => {
     `)
 }
 
-// Function to get user details corresponding to ID from database
+
 const getUserDetails = async (session) => {
     const db = await open({
         filename: "accounts.db",
@@ -82,9 +82,9 @@ const getUserDetails = async (session) => {
 
     const id = sessionRow.id
 
-    const userRow = await db.get("SELECT * FROM users WHERE id = ?", id) // Get user information corresponding to given ID
+    const userRow = await db.get("SELECT * FROM users WHERE id = ?", id) 
 
-    if (!userRow) { // No entry found
+    if (!userRow) { 
         return false
     }
 
@@ -93,9 +93,9 @@ const getUserDetails = async (session) => {
     return userRow
 }
 
-// Form for editing account details
+
 const editPage = async (req, res, next) => {
-    const session = req.cookies.session // Get session stored in cookie
+    const session = req.cookies.session 
 
     const { username } = await getUserDetails(session)
 
@@ -141,7 +141,7 @@ const editPage = async (req, res, next) => {
     `)
 }
 
-// Form for deleting account
+
 const deletePage = (req, res, next) => {
     const session = req.cookies.session
 
